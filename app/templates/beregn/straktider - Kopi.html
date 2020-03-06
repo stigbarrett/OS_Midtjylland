@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+
+
+{% block app_content %}
+	<h1>Resultat</h1>
+	<div class="table-responsive-sm">	  
+	<table id="Strak_id" data-toggle="table" class="table table-striped table-bordered table-hover table-lg table-fixed" data-height="600" cellspacing="0" width="110%"> 
+		<thead>
+			{% if strak %}
+				<tr style="color: black;" >     
+					{% for key in strak[0] %}
+					<th class="th-lg"> {{ key }} </th>
+					{% endfor %}
+				</tr> 
+			{% endif %}
+		</thead> 
+		<tbody>
+			{% for dict_item in strak %}
+				<tr style = "font-family:georgia,garamond,serif;font-size:11px;font-style:bold;" class="hover">	
+					{% for value in dict_item.values() %}
+						{% if value is string %}
+							<td><span style="color:black;">{{ value }}</span></td>
+						{% else %}
+							{% if value.tidplac == "1" and value.ialtplac == "1" %}
+								<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "1" and value.ialtplac == "2" %}
+								<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "1" and value.ialtplac == "3" %}
+								<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "1" and value.ialtplac >= "4" %}
+								<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac}}-{{ value.ialt }}</td>
+							{% elif value.tidplac == "2" and value.ialtplac == "1" %}
+								<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>	
+							{% elif value.tidplac == "2" and value.ialtplac == "2" %}
+								<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "2" and value.ialtplac == "3" %}
+								<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "2" and value.ialtplac >= "4" %}
+								<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac}}-{{ value.ialt }}</td>
+							{% elif value.tidplac == "3" and value.ialtplac == "1" %}
+								<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "3" and value.ialtplac == "2" %}
+								<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac == "3" and value.ialtplac >= "4" %}
+								<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac }}-{{ value.ialt }}</td>
+							{% elif value.tidplac == "3" and value.ialtplac == "3" %}
+								<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac >= "4" and value.ialtplac == "3" %}
+								<td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac >= "4" and value.ialtplac == "2" %}
+								<td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+							{% elif value.tidplac >= "4" and value.ialtplac == "1" %}
+								<td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+							{% else %}
+								<td>{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</td>
+							{% endif %}
+						{% endif %}	
+					{% endfor %}
+				</tr>
+			{% endfor %} 
+		</tbody>
+		<tfoot>
+			{% if strak %}
+				<tr style="color: black;" class="cell-border compact stripe">     
+					{% for key in strak[0] %}
+						<th> {{ key }} </th>
+					{% endfor %}
+				</tr> 
+			{% endif %}
+		</tfoot> 
+	</table>
+	</div>
+	
+	
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+	<script type="text/javascript">
+		var $table = $('#Strak_id')
+		$(document).ready(function() {	
+			// Initialise table specifying a dragClass and an onDrop function that will display an alert
+			
+			$table.tableDnD();
+		});
+	</script>
+	
+{% endblock scripts %}
+		

@@ -1,0 +1,72 @@
+<!-- BLog Article Section -->
+
+<div class="col-md-12">
+	<!-- Single Blog Post -->
+	<article class="blog-post-wrapper wow fadeIn" data-wow-delay="0.3s">
+		<!-- Author Info -->
+		<header class="author-info">
+            <h2 class="blog-post-title"><a>{{klub}}s træningsløb den {{ tid }} i {{skov}} - <span style="color: #FF6A00">{{bane}}:</span></a></h2>
+        </header>
+        <!-- Post Content -->
+		<section class="blog-post-content">
+			<div class="blog-post">
+                <table id="Strak_id" data-toggle="table" class="table table-bordered compact nowrap table-striped cell-border" style="hight:100%" style="width:100%"> 
+					<thead>
+						{% if strak %}
+							<tr style="table-layout:auto; color: black">     
+								{% for key in strak[0] %}
+									<th> {{ key }} </th>
+								{% endfor %}
+							</tr> 
+						{% endif %}
+					</thead>
+                    <tbody>
+                        {% for dict_item in strak %}
+                        <tr style = "" class="hover">	
+                            {% for value in dict_item.values() %}
+                                {% if value is string %}
+                                    <td><span style= "color:black;">{{ value }}</span></td>
+                                {% else %}
+                                    {% if value.tidplac == "1" and value.ialtplac == "1" %}
+                                        <td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "1" and value.ialtplac == "2" %}
+                                        <td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "1" and value.ialtplac == "3" %}
+                                        <td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "1" and value.ialtplac >= "4" %}
+                                        <td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac}}-{{ value.ialt }}</td>
+                                    {% elif value.tidplac == "2" and value.ialtplac == "1" %}
+                                        <td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>	
+                                    {% elif value.tidplac == "2" and value.ialtplac == "2" %}
+                                        <td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "2" and value.ialtplac == "3" %}
+                                        <td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "2" and value.ialtplac >= "4" %}
+                                        <td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac}}-{{ value.ialt }}</td>
+                                    {% elif value.tidplac == "3" and value.ialtplac == "1" %}
+                                        <td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "3" and value.ialtplac == "2" %}
+                                        <td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac == "3" and value.ialtplac >= "4" %}
+                                        <td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac }}-{{ value.ialt }}</td>
+                                    {% elif value.tidplac == "3" and value.ialtplac == "3" %}
+                                        <td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac >= "4" and value.ialtplac == "3" %}
+                                        <td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac >= "4" and value.ialtplac == "2" %}
+                                        <td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+                                    {% elif value.tidplac >= "4" and value.ialtplac == "1" %}
+                                        <td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+                                    {% else %}
+                                        <td>{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</td>
+                                    {% endif %}
+                                {% endif %}	
+                            {% endfor %}
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+		</section>
+	</article>
+</div>

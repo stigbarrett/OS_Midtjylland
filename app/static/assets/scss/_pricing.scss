@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Pricing Section Start
+   ========================================================================== */
+  #pricing {
+    background: #F5F8FB;
+  }
+  .pricing-table-1 {
+    background: #fff;
+    margin: 0 15px;
+    .table-header {
+      padding: 30px 0;
+      h3 {
+        color: #fff;
+        font-size: 24px;
+      }
+    }
+    .plan {
+      border-bottom: 1px solid rgba(189, 195, 199, 0.5);
+      .price {
+        font-size: 24px;
+      }
+      .period {
+        font-size: 18px;
+        color: #999;
+        text-transform: uppercase;
+      }
+    }
+    .plan-info {
+      margin-top: 30px;
+      p {
+        color: #bdc3c7;
+        font-size: 16px;
+        line-height: 30px;
+      }
+    }
+    .button-area {
+      padding: 30px 0 45px 0;
+    }
+  }
+
+  #pricing-block-x {
+    background: #ecf0f1;
+  }
+
+  .pricing-table-x {
+    background: #ffffff;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    &:hover{
+      -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+    }
+    .table-header {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      h3 {
+        font-size: 20px;
+        font-weight: 500;
+      }
+    }
+    .plan {
+      margin: 20px 0;
+      .price {
+        font-size: 55px;
+        margin-bottom: 0;
+        span{
+          font-size: 15px;
+        }
+      }
+      .per{
+        font-size: 14px;
+      }
+    }
+    .plan-info {
+      text-align: left;
+      overflow: hidden;
+      padding: 15px 0;
+      ul{
+        padding: 0;
+        margin-bottom: 0px;
+        li{
+          margin-bottom: 15px;
+          i{
+            float: right;
+            font-size: 11px;
+          }
+          .true{
+            color: $preset;
+          }
+          .false{
+            color: #ec126d;
+          }
+        }
+      }
+    }
+    .button-area {
+      margin-top: 0px;
+    }
+  }
+  #pricing .active{
+    position: relative;
+    -webkit-transform: scale(1.05, 1.05);
+    transform: scale(1.05, 1.05);
+    z-index: 2;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+  }
+  /* Pricing Table 2 */
+  .pricing-table2 {
+    margin-bottom: 15px;
+  }
+
+  .single-pricing-2 {
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    &:hover{
+      -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+    }
+    .plan-name {
+      display: block;
+      font-size: 24px;
+      line-height: 30px;
+      padding: 20px 0;
+      small {
+        display: block;
+        font-size: 15px;
+        margin-top: 15px;
+        line-height: normal;
+      }
+    }
+    .plan-price{
+      background: #9C3;
+      color: #fff !important;
+      font-size: 48px;
+      margin-bottom: 30px;
+      padding: 30px 0;
+      text-align: center;
+    }
+  }
+
+  .featured .plan-price {
+    color: #fff !important;
+    background: #ff5959;
+  }
+
+  .premium .plan-price {
+    background: #3498db !important;
+    color: #fff !important;
+  }
+
+  .single-pricing-2 {
+    .plan-price {
+      font-weight: 500;
+      .currency {
+        font-size: 50%;
+        left: -0.01em;
+        top: -0.9em;
+      }
+      sub {
+        font-size: 18px;
+      }
+    }
+    ul {
+      background: #fff none repeat scroll 0 0;
+      margin-bottom: 0;
+      padding: 0;
+      li {
+        border-top: 1px dashed #dedede;
+        font-weight: 400;
+        padding: 12px 29px;
+        text-align: center;
+        &:first-child {
+          border-top: 0;
+        }
+      }
+    }
+  }
+
+  .pricing2-button {
+    padding: 20px 0;
+    text-align: center;
+    .btn {
+      padding: 12px 55px;
+      text-transform: uppercase;
+    }
+  }

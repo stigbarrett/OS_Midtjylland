@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% import 'macros/bootstrap_wtf.html' as b_wtf %}
+<!--{% import 'bootstrap/wtf.html' as wtf %}-->
+
+{% block app_content %}
+<section class="classic-blog-section section">
+	<div class="container">
+        <div class="row">
+			<!-- BLog Article Section -->
+			<div class="col-md-12">
+				<!-- Single Blog Post -->
+				<article class="blog-post-wrapper wow fadeIn" data-wow-delay="0.3s">
+					<!-- Author Info -->
+					<header class="author-info">
+						<h2 class="blog-post-title">Opsætning af nye løb - Grundoplysninger</a></h2>
+					</header>
+                    <section class="blog-post-content">
+						<div class="blog-post">
+							<section>
+								<div>
+									<h2 class="widget-title">Grundoplysninger - udfyld:</h2>
+									<div class="row">
+									<div class="col-md-6">
+									
+									<form method="POST" data-toggle="validator">
+										
+										<!--{{ form.KonkurrenceType(class="form-control contact-control", placeholder="Konkurrencetype") }}
+										{{ form.Skov.label }}:<br> {{ form.Skov(class="form-control contact-control", placeholder="Skov") }}<br>
+										{{ form.Dato.label }}:<br> {{ form.Dato(class="form-control contact-control", placeholder="Dato") }}<br>
+										{{ form.Mappenavn.label }}:<br>{{ form.Mappenavn(class="form-control contact-control", placeholder="Mappenavn") }}<br>
+										{{ form.Klub.label }}:<br>{{ form.Klub(class="form-control contact-control", placeholder="Klub") }}<br><br>
+										{{ form.Grunddata.label }}:<br>{{ form.Grunddata(class="form-control contact-control", placeholder="Grunddata") }}<br><br>
+										{{ form.submit(class="btn btn-outline btn-xs")}}
+									</form>-->
+										{{ form.hidden_tag() }}
+										{{ b_wtf.bootstrap_field(form.KonkurrenceType, label=False, errors=True) }}
+										{{ b_wtf.bootstrap_field(form.Skov, label=False, errors=True) }} 
+										{{ b_wtf.bootstrap_field(form.Dato, label=False, errors=True) }}
+										{{ b_wtf.bootstrap_field(form.Mappenavn, label=False, errors=True) }}
+										{{ b_wtf.bootstrap_field(form.Klub, errors=True) }}
+										{{ b_wtf.bootstrap_field(form.Grunddata, errors=True) }}
+										<!--{{ b_wtf.bootstrap_field(form.submit)}}
+										{{ form.submit(class="btn btn-outline btn-xs")}}-->
+										{{ form.submit(class="btn btn-outline btn-xs")}}
+									
+									</form>
+									</div>
+									</div>
+								</div>
+							</section>
+							<section>
+                            <table id="konkurrencer_alle" data-fixed-columns="true" class="table table-striped table-bordered table-hover table-sm" data-height="400" cellspacing="0" width="60%"> 
+                                <!-- Table headers -->
+                                <thead> 
+                                    {% if Konkurrencer %}
+                                        <tr style="color: green;" >     
+                                            {% for key in Konkurrencer[0] %}
+                                            <th> {{ key }} </th>
+                                            {% endfor %}
+                                        </tr> 
+                                    {% endif %}
+                                </thead> 
+                                
+                                <!-- For loop logic of jinja template -->
+                                <tbody>
+                                    {% for dict_item in Konkurrencer %}
+                                        <tr class="hover">	
+                                            {% for value in dict_item.values() %}						
+                                                <td><span style="color:#ef0000;">{{ value }}</span></td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %} 
+                                </tbody>
+                            </table>
+  
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

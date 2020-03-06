@@ -1,0 +1,36 @@
+<!-- BLog Article Section -->
+<div class="col-md-12">
+	<!-- Single Blog Post -->
+	<article class="blog-post-wrapper wow fadeIn" data-wow-delay="0.3s">
+		<!-- Author Info -->
+		<header class="author-info">
+			<h2 class="blog-post-title"><a>{{klub}}s træningsløb den {{ tid }} i {{skov}} - <span style="color: #FF6A00">{{bane}}:</span></a></h2>
+		</header>
+		<!-- Featured Content -->
+		<!-- Post Content -->
+		<section class="blog-post-content">
+			<div class="blog-post">
+				<table id="table_id" data-toggle="table" class="table table-bordered nowrap table-striped cell-border" data-height="500" style="width:100%"> 
+					<thead>
+						{% if resultat %}
+							<tr style="table-layout:auto; color: black">     
+								{% for key in resultat[0] %}
+									<th> {{ key }} </th>
+								{% endfor %}
+							</tr> 
+						{% endif %}
+					</thead>
+
+					<tbody>
+						{% for dict_item in resultat %}
+						<tr style = "" class="hover">	
+							{% for value in dict_item.values() %}
+									<td><span style= "color:#FF6A00;">{{ value }}</span></td>
+							{% endfor %}
+						</tr>
+						{% endfor %} 
+					</tbody>
+				</table>
+            </div>
+    </article>
+</div>

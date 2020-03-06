@@ -1,0 +1,202 @@
+
+
+
+.slider_area{}
+
+
+.single_slider{
+    height: 700px;
+    background-position: center center;
+    background-size: cover;
+    
+    
+    @media #{$desktop}{
+        height: 900px;
+    }
+    
+    @media #{$xs}{
+        height: 600px;
+    }
+    
+    & .slider_content{
+        & .title{
+            font-family: 'Poppins', sans-serif;
+            font-size: 70px;
+            color: #fff;
+            letter-spacing: 1px;
+            
+            @media #{$lg}{
+                font-size: 60px;
+            }
+            @media #{$md}{
+                font-size: 48px;
+            }
+            @media #{$xs}{
+                font-size: 28px;
+            }
+            @media #{$sm}{
+                font-size: 36px;
+            }
+        }
+        
+        & p{
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 100;
+            margin-top: 15px;
+            margin-bottom: 0;
+            
+            @media #{$lg}{
+                font-size: 20px;
+            }
+            @media #{$md}{
+                font-size: 20px;
+            }
+            @media #{$xs}{
+                font-size: 16px;
+            }
+        }
+        
+        & .btn-common{
+            margin-top: 40px;
+        }
+    }
+    
+    & .slider_content_2{
+        & p{
+            font-size: 16px;
+        }
+    }
+}
+
+
+
+.header-slider-active{
+    & .slick-dots{
+        position: absolute;
+        left: 0;
+        bottom: 50px;
+        width: 100%;
+        text-align: center;
+        z-index: 9;
+        
+        & li{
+            display: inline-block;
+            margin: 0 5px;
+            
+            & button{
+                width: 32px;
+                height: 5px;
+                background: none;
+                background-color: rgba(253, 254, 255, 0.8);
+                font-size: 0;
+                @include transition(0.3s);
+                border: 0;
+                padding: 0;
+            }
+            
+            &.slick-active{
+                & button{
+                    background-color: #9c3;
+                }
+            }
+        }
+    }
+    
+    & .slick-arrow{
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        @include transform(translateY(-50%));
+        z-index: 9;
+        width: 35px;
+        height: 55px;
+        top: 50%;
+        padding: 10px 5px;
+        box-shadow: none;
+        background: url(../img/skin.png);
+        text-shadow: none;
+        opacity: 0.5;
+        @include transition(0.3s);
+        cursor: pointer;
+        
+        &:hover{
+            opacity: 1;
+        }
+        
+        &.next{
+            left: auto;
+            right: 5%;
+            background-position: -150px 0px;
+        }
+    }
+}
+
+
+.header-hero-area{
+    background-color: #F5F8FB;
+    padding: 100px 0 150px;
+    
+    & .contents{
+        margin-top: 50px;
+        
+        & .head-title{
+            color: #212121;
+            font-size: 52px;
+            font-weight: 300;
+            margin-bottom: 25px;
+            
+            @media #{$lg}{
+                font-size: 44px;
+            }
+            @media #{$md}{
+                font-size: 44px;
+            }
+            @media #{$xs}{
+                font-size: 30px;
+            }
+            @media #{$sm}{
+                font-size: 40px;
+            }
+        }
+        & p{
+            color: #666;
+            font-size: 14px;
+            line-height: 26px;
+        }
+        & .header-button{
+            margin-top: 30px;
+        }
+    }
+    
+    & .intro-img{
+        margin-top: 50px;
+        
+        & img{
+            width: 100%;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

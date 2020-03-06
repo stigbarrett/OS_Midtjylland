@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% import 'macros/bootstrap_wtf.html' as b_wtf %}
+
+
+{% block app_content %}
+
+<!-- Page Header -->
+    <div class="header-hero-area">
+      <div class="container">
+        <div class="row">
+				<div class="col-md-4">
+						<h3 class="text-white">Resultater</h3>
+						<form action="" method="POST" class="">
+							{{ form1.hidden_tag() }} {{ form1.form_name }} {{ form1.konkurrence }}<br>{{ form1.bane }}<br>
+							{% for subfield in form1.art %}
+								<tr>
+									<td>{{ subfield }}</td>
+									<td>{{ subfield.label }}</td>
+								</tr>
+							{% endfor %}
+							<!--{{ form1.art }}-->
+							<br>{{ form1.submit1(class="btn btn-outline btn-xs")}}
+						</form>
+				</div>
+				<div class="col-md-4">
+					<h3 class="text-white">Point</h3>
+					<form action="" method="POST" class="">
+						{{ form2.hidden_tag() }} {{ form2.form_name }} {{ form2.banepoint }}<br>
+						{{ form2.submit2(class="btn btn-outline btn-xs")}}
+					</form>
+				</div>
+				<div class="col-md-4">
+					<h3 class="text-white">Bruger Oversigt</h3>
+						<form action="" method="POST">
+							{{ form3.hidden_tag() }} {{ form3.form_name }} {{ form3.brugerbaner }}<br>
+							{{ form3.submit3(class="btn btn-outline btn-xs")}}
+						</form>	
+				</div>
+            </div>
+          </div>
+    </div>
+    <!-- Page Header End -->
+	
+	
+
+<!-- Classic Blog Section -->
+    <!-- <section class="classic-blog-section section"> -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+          
+				<!-- BLog Article Section -->
+				{% if art == 'resultat' %}
+					{% include 'beregn/_resultat.html' %}
+				{% endif %}
+				{% if art == 'straktider' %}
+					{% include 'beregn/_straktider.html' %}
+				{% endif %}
+				{% if art == 'point' %}
+					{% include 'beregn/_point.html' %}
+				{% endif %}
+				{% if art == 'bruger' %}
+					{% include 'beregn/_bruger.html' %}
+				{% endif %}
+				<!-- End -->
+				</div>
+			</div>
+		</div>
+    <!-- </section> -->
+    <!-- Classic Blog Section End -->
+
+
+{% endblock app_content %}
+
+{% block scripts %}
+	{{ super() }}
+	<script type="text/javascript">
+	$(document).ready( function () {
+		$('#Strak_id').DataTable( {
+			scrollY: '50vh',
+			"scrollX": true,
+			fixedColumns: {
+				leftColumns: 2
+			},
+			"order": [[ 1, "asc" ]],
+			paging: false,
+			rowReorder: true,
+			"ordering": false,
+			"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Danish.json"
+			},
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'excel', 'pdf'
+			],
+			"searching": false
+		});
+	} );
+	
+	$('#Strak_id').css("font-size", 11);
+		table.columns.adjust().draw();
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready( function () {
+		$('#table_id').DataTable( {
+			scrollY: '50vh',
+			"scrollX": true,
+			fixedColumns: {
+				leftColumns: 2
+			},
+			"ordering": false,
+			paging: false,
+			"language": {
+				"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Danish.json"
+			},
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'excel', 'pdf'
+			],
+			"searching": false
+		});
+	} );
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready( function () {
+		$('#point_id').DataTable( {
+			scrollY: '50vh',
+			"scrollX": true,
+			fixedColumns: {
+				leftColumns: 2
+			},
+			"order": [[ 1, "desc" ]],
+			paging: false,
+			"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Danish.json"
+			},
+			dom: 'Bfrtip',
+			buttons: [
+				'copy', 'excel', 'pdf'
+			],
+			"searching": false
+		});
+	} );
+	
+	$('#point_id').css("font-size", 11);
+		table.columns.adjust().draw();
+	</script>
+	
+	
+
+	<!-- <script type="text/javascript">
+		var $table = $('#Strak_id')
+		$(document).ready(function() {	
+			// Initialise table specifying a dragClass and an onDrop function that will display an alert
+			
+			$table.tableDnD();
+		});
+	</script> -->
+	
+
+	<script charset="utf-8" type="text/javascript">
+
+		$(function() {
+		
+			// jQuery selection for the 2 select boxes
+			var dropdown = {
+				konkurrence: $('#select_konkurrence'),
+				bane: $('#select_bane')
+			};
+		
+			// call to update on load
+			
+			updateBanerne();
+		
+			// function to call XHR and update county dropdown
+			function updateBanerne() {
+				var send = {
+					konkurrence: dropdown.konkurrence.val()
+				};
+				
+				dropdown.bane.attr('disabled', 'disabled');
+				dropdown.bane.empty();
+				
+				$.getJSON("{{ url_for('._get_banerne') }}", send, function(data) {
+					data.forEach(function(item) {
+						dropdown.bane.append(
+							$('<option>', {
+								value: item[0],
+								text: item[1]
+							})
+						);
+					});
+					
+					dropdown.bane.removeAttr('disabled');
+				});
+			}
+			
+			// event listener to state dropdown change
+			dropdown.konkurrence.on('change', function() {
+				
+				updateBanerne();
+			});
+		
+		});
+		
+	</script>
+	
+
+{% endblock scripts %}

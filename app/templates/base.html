@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <!-- Viewport Meta Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="57x57" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-57x57.png')) }}>
+    <link rel="apple-touch-icon" sizes="60x60" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-60x60.png')) }}>
+    <link rel="apple-touch-icon" sizes="72x72" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-72x72.png')) }}>
+    <link rel="apple-touch-icon" sizes="76x76" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-76x76.png')) }}>
+    <link rel="apple-touch-icon" sizes="114x114" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-114x114.png')) }}>
+    <link rel="apple-touch-icon" sizes="120x120" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-120x120.png')) }}>
+    <link rel="apple-touch-icon" sizes="144x144" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-144x144.png')) }}>
+    <link rel="apple-touch-icon" sizes="152x152" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-152x152.png')) }}>
+    <link rel="apple-touch-icon" sizes="180x180" href={{ (url_for('static', filename='assets/img/favicon/apple-icon-180x180.png')) }}>
+    <link rel="icon" type="image/png" sizes="192x192"  href={{ (url_for('static', filename='assets/img/favicon/android-icon-192x192.png')) }}>
+    <link rel="icon" type="image/png" sizes="32x32" href={{ (url_for('static', filename='assets/img/favicon/favicon-32x32.png')) }}>
+    <link rel="icon" type="image/png" sizes="96x96" href={{ (url_for('static', filename='assets/img/favicon/favicon-96x96.png')) }}>
+    <link rel="icon" type="image/png" sizes="16x16" href={{ (url_for('static', filename='assets/img/favicon/favicon-16x16.png')) }}>
+    <link rel="manifest" href={{ (url_for('static', filename='assets/img/favicon/manifest.json')) }}>
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content={{ (url_for('static', filename='assets/img/favicon/ms-icon-144x144.png')) }}>
+    <meta name="theme-color" content="#ffffff">
+
+    <title>
+        OS-Midtjylland
+    </title>
+	
+	
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/css/bootstrap.min.css') }}>
+    <!-- slick -->
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/css/slick.css') }}>
+    <!-- slick -->
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/css/slick.css') }}>
+    <!--Fonts-->
+	<link rel="stylesheet" media="screen" href={{ url_for('static', filename='assets/fonts/font-awesome/all.min.css') }}>
+	<link rel="stylesheet" media="screen" href={{ url_for('static', filename='assets/fonts/simple-line-icons.css') }}>
+    <!-- Extras -->
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/extras/owl/owl.carousel.css') }}>
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/extras/owl/owl.theme.css') }}>
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/extras/animate.css') }}>
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/extras/normalize.css') }}>
+    <!-- Main Style -->
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/css/main.css') }}>
+    <!-- Responsive Style -->
+	<link rel="stylesheet" type="text/css" href={{ url_for('static', filename='assets/css/responsive.css') }}>
+
+    <!-- Color CSS Styles  -->
+	<link rel="stylesheet" type="text/css" media="screen" href={{ url_for('static', filename='assets/css/colors/orange.css') }}>
+	
+	<!-- <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sp-1.0.1/sl-1.3.1/datatables.min.css"/>
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+</head>
+
+<body>
+
+    <!-- Header area wrapper starts -->
+    <header id="header-wrap">
+        <!-- Navbar Starts -->
+        <div class="header-navbar">
+            <div class="navbar-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg">
+                                <a class="navbar-brand" href="{{ url_for('beregn.vis_resultater') }}">
+                                    <img src="{{ url_for('static', filename='assets/img/logo.png') }}">
+                                </a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                </button>
+
+                                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a href="{{ url_for('main.index') }}">Forside</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url_for('main.explore') }}">Udforsk</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="{{ url_for('beregn.admin') }}">Administrator</a></li>
+                                                <li><a href="{{ url_for('beregn.opsat') }}">Opsætning</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url_for('beregn.vis_resultater') }}">Resultater</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url_for('beregn.vis_statistik') }}">Statistik</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="navbar-search d-none d-sm-block">
+                                    <form action="#">
+                                        <input type="text" placeholder="Søg">
+                                        <button><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </nav> <!-- navbar -->
+                        </div>
+                    </div> <!-- row -->
+                </div> <!-- container -->
+            </div> <!-- navbar area -->
+        </div> <!-- header navbar -->
+    </header>
+    <!-- Header-wrap Section End -->
+
+	{% block content %}
+        <div class="container-fluid">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {# application content needs to be provided in the app_content block #}
+            {% block app_content %}{% endblock app_content %}
+            
+        </div>
+    {% endblock content %}
+
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Row Starts -->
+            <div class="row section">
+                <!-- Footer Widget Starts -->
+                <div class="footer-widget col-md-6 col-lg-3 col-xs-12">
+                    <h3 class="small-title">
+                        About Us
+                    </h3>
+                    <p>
+                        Etiam ornare condimentum massa et scelerisque. Mauris nibh ipsum, laoreet at venenatis ac,
+                    </p>
+                    <ul class="mb-3">
+                        <li><i class="fa fa-map-marker-alt"></i> 4211, 2367 Nash Street , Dearborn, Michigan</li>
+                        <li><i class="fa fa-phone"></i> +68 313-240-405</li>
+                    </ul>
+                </div><!-- Footer Widget Ends -->
+
+                <!-- Footer Widget Starts -->
+                <div class="footer-widget col-md-6 col-lg-3 col-xs-12">
+                    <h3 class="small-title">
+                        Quick Links
+                    </h3>
+                    <ul class="menu">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Terms & Ruler</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Full Width Page</a></li>
+                        <li><a href="#">Notifications</a></li>
+                    </ul>
+                </div>
+                <!-- Footer Widget Ends -->
+
+                <!-- Footer Widget Starts -->
+                <div class="footer-widget col-md-6 col-lg-3 col-xs-12">
+                    <h3 class="small-title">
+                        Popular Posts
+                    </h3>
+                    <ul class="image-list">
+                        <li>
+                            <figure class="overlay">
+                                <img class="img-fluid" src="assets/img/art/a1.jpg" alt="">
+                            </figure>
+                            <div class="post-content">
+                                <h6 class="post-title"> <a href="blog-single.html">Lincoln Square Steak</a> </h6>
+                                <div class="meta">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span class="date">30 Reviews</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <figure class="overlay">
+                                <img class="img-fluid" src="assets/img/art/a2.jpg" alt="">
+                            </figure>
+                            <div class="post-content">
+                                <h6 class="post-title"><a href="blog-single.html">Top 10 French coffe</a></h6>
+                                <div class="meta">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span class="date">12 Reviews</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Footer Widget Ends -->
+
+                <!-- Footer Widget Starts -->
+                <div class="footer-widget col-md-6 col-lg-3 col-xs-12">
+                    <h3 class="small-title">
+                        Newsletter
+                    </h3>
+                    <form>
+                        <input type="text" placeholder="Email here">
+                        <button type="submit"><i class="fa fa-paper-plane-o"></i></button>
+                    </form>
+                    <div class="flicker-gallery">
+                        <h4>
+                            Instagram
+                        </h4>
+                        <a href="#" title="Pan Masala"><img src="assets/img/flicker/img1.jpg" alt=""></a>
+                        <a href="#" title="Sports Template for Joomla"><img src="assets/img/flicker/img2.jpg" alt=""></a>
+                        <a href="" title="Apple Keyboard"><img src="assets/img/flicker/img3.jpg" alt=""></a>
+                    </div>
+                </div><!-- Footer Widget Ends -->
+            </div><!-- Row Ends -->
+        </div><!-- Container Ends -->
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <p class="copyright-text">Designed and Developed by <a href="http://graygrids.com" rel="nofollow">GrayGrids</a></p>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="social-footer text-right">
+                            <a href="#"><i class="fab fa-facebook-f icon-round"></i></a>
+                            <a href="#"><i class="fab fa-twitter icon-round"></i></a>
+                            <a href="#"><i class="fab fa-linkedin icon-round"></i></a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright  End-->
+
+    </footer>
+    <!-- Footer Section End-->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="fa fa-angle-up">
+        </i>
+    </a>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader" id="loader-1"></div>
+    </div>
+    <!-- End Preloader -->
+   
+{% block scripts %}
+    
+
+    <script src="{{ url_for('static', filename='assets/js/jquery-min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.mixitup.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/smoothscroll.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/wow.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.appear.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/form-validator.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/contact-form-script.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/slick.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sp-1.0.1/sl-1.3.1/datatables.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/TableDnD/0.9.1/jquery.tablednd.js" integrity="sha256-d3rtug+Hg1GZPB7Y/yTcRixO/wlI78+2m08tosoRn7A=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> -->
+    <script>
+        function translate(sourceElem, destElem, sourceLang, destLang) {
+            $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+            $.post('/translate', {
+                text: $(sourceElem).text(),
+                source_language: sourceLang,
+                dest_language: destLang
+            }).done(function(response) {
+                $(destElem).text(response['text'])
+            }).fail(function() {
+                $(destElem).text("{{ _('Error: Could not contact server.') }}");
+            });
+        }
+    </script>
+{% endblock scripts %}
+    
+    <!-- JavaScript & jQuery Plugins -->
+    
+</body>
+
+</html>

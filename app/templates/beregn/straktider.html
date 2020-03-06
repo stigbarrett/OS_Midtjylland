@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+				<aside class="left-sidebar">
+					<div class="widget">
+						<div class="container">
+							<form action="" method="POST" class="form-search">
+								{{ form.hidden_tag() }} {{ form.form_name }} {{ form.konkurrence }}<br><br>{{ form.bane }}<br><br>{{ form.submit}}
+							</form>		
+						</div>
+					</div>
+				</aside>
+			</div>
+			<div class="span9">
+				<article>
+					<div class="row">
+						<div class="span10">
+							<div class="post-heading">
+								<h3>Stræktider for {{klub}}s træningsløb den {{ tid }} i {{skov}} - {{bane}}:</h3>
+							</div>
+							<table id="Strak_id" data-toggle="table" class="a table table-striped table-bordered table-hover"  data-height="500" > 
+								<font size="10" face="Courier New" >
+								<thead>
+									{% if strak %}
+										<tr style="table-layout:auto; color: black" >     
+											{% for key in strak[0] %}
+												<th > {{ key }} </th>
+											{% endfor %}
+										</tr> 
+									{% endif %}
+								</thead>
+								</font>
+								<font size="2" face="Courier New" >
+								<tbody>
+									{% for dict_item in strak %}
+									<tr style = "" class="hover">	
+										{% for value in dict_item.values() %}
+											{% if value is string %}
+												<td><span style= "color:black;">{{ value }}</span></td>
+											{% else %}
+												{% if value.tidplac == "1" and value.ialtplac == "1" %}
+													<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "1" and value.ialtplac == "2" %}
+													<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "1" and value.ialtplac == "3" %}
+													<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "1" and value.ialtplac >= "4" %}
+													<td><span style="color:#ef0000;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac}}-{{ value.ialt }}</td>
+												{% elif value.tidplac == "2" and value.ialtplac == "1" %}
+													<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>	
+												{% elif value.tidplac == "2" and value.ialtplac == "2" %}
+													<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "2" and value.ialtplac == "3" %}
+													<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "2" and value.ialtplac >= "4" %}
+													<td><span style="color:#0b00ef;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac}}-{{ value.ialt }}</td>
+												{% elif value.tidplac == "3" and value.ialtplac == "1" %}
+													<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "3" and value.ialtplac == "2" %}
+													<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac}}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac == "3" and value.ialtplac >= "4" %}
+													<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}</span><br>{{ value.ialtplac }}-{{ value.ialt }}</td>
+												{% elif value.tidplac == "3" and value.ialtplac == "3" %}
+													<td><span style="color: green;">{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac >= "4" and value.ialtplac == "3" %}
+													<td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color: green;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac >= "4" and value.ialtplac == "2" %}
+													<td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#0b00ef;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+												{% elif value.tidplac >= "4" and value.ialtplac == "1" %}
+													<td>{{ value.tidplac }}-{{ value.tid }}</span><br><span style="color:#ef0000;">{{ value.ialtplac }}-{{ value.ialt }}</span></td>
+												{% else %}
+													<td>{{ value.tidplac }}-{{ value.tid }}<br>{{ value.ialtplac }}-{{ value.ialt }}</td>
+												{% endif %}
+											{% endif %}	
+										{% endfor %}
+										</tr>
+									{% endfor %} 
+								</tbody>
+								</font>
+								<tfoot>
+									{% if strak %}
+										<tr style="color: black;" class="cell-border compact stripe">     
+											{% for key in strak[0] %}
+												<th> {{ key }} </th>
+											{% endfor %}
+										</tr> 
+									{% endif %}
+								</tfoot> 
+							</table>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+    </div>
+</section>
+
+
+	
+{% endblock app_content %}
+
+{% block scripts %}
+	{{ super() }}
+
+	<script type="text/javascript">
+		var $table = $('#Strak_id')
+		$(document).ready(function() {	
+			// Initialise table specifying a dragClass and an onDrop function that will display an alert
+			
+			$table.tableDnD();
+		});
+	</script>
+	
+
+	<script charset="utf-8" type="text/javascript">
+
+		$(function() {
+		
+			// jQuery selection for the 2 select boxes
+			var dropdown = {
+				konkurrence: $('#select_konkurrence'),
+				bane: $('#select_bane')
+			};
+		
+			// call to update on load
+			
+			updateBanerne();
+		
+			// function to call XHR and update county dropdown
+			function updateBanerne() {
+				var send = {
+					konkurrence: dropdown.konkurrence.val()
+				};
+				
+				dropdown.bane.attr('disabled', 'disabled');
+				dropdown.bane.empty();
+				
+				$.getJSON("{{ url_for('._get_banerne') }}", send, function(data) {
+					data.forEach(function(item) {
+						dropdown.bane.append(
+							$('<option>', {
+								value: item[0],
+								text: item[1]
+							})
+						);
+					});
+					
+					dropdown.bane.removeAttr('disabled');
+				});
+			}
+			
+			// event listener to state dropdown change
+			dropdown.konkurrence.on('change', function() {
+				
+				updateBanerne();
+			});
+		
+		});
+		
+	</script>
+	
+
+{% endblock scripts %}
+		

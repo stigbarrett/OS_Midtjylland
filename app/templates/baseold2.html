@@ -1,0 +1,91 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    {% if title %}{{ title }} - Microblog{% else %}{{ _('Welcome to Microblog') }}{% endif %}
+{% endblock title %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{ url_for('main.index') }}" style="font-size: 16px;line-height: 22px;letter-spacing:  1px;">OS Midtjylland</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ url_for('main.index') }}" style="font-size: 16px;line-height: 22px;letter-spacing:  1pxem;">{{ _('Forside') }}<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.explore') }}" style="font-size: 16px;line-height: 22px;letter-spacing:  1pxem;">{{ _('Udforsk') }}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ url_for('beregn.tr_loeb') }}" style="font-size: 16px;line-height: 22px;letter-spacing:  0.040em;">{{ _('TR Løb') }}<</a>
+                    <a class="dropdown-item" href="{{ url_for('beregn.Straktider') }}" style="font-size: 16px;line-height: 22px;letter-spacing:  1px;">{{ _('Stræktid') }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('beregn.admin') }}" style="font-size: 16px;line-height: 22px;letter-spacing:  1px;">{{ _('Admin') }}</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" style="font-size: 16px;line-height: 22px;letter-spacing:  1px;">Disabled</a>
+            </li>
+        </ul>
+        {% if g.search_form %}
+        <form class="form-inline my-2 my-lg-0" method="get" action="{{ url_for('main.search') }}" style="font-size: 22px;line-height: 22px;letter-spacing:  1px;">
+            <div class="form-group">
+            {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+            </div>
+        </form>
+        {% endif %}
+        <ul class="nav navbar-nav navbar-right" style="font-size: 16px;line-height: 22px;letter-spacing:  1px;">
+        {% if current_user.is_anonymous %}
+                <li><a href="{{ url_for('auth.login') }}" style="font-size: 22px;line-height: 22px;letter-spacing:  1px;">{{ _('Log ind') }}</a></li>
+            {% else %}
+                <li><a href="{{ url_for('main.user', username=current_user.username) }} style="font-size: 22px;line-height: 22px;letter-spacing:  1px;"">{{ _('Profile') }}</a></li>
+                <li><a href="{{ url_for('auth.logout') }} style="font-size: 22px;line-height: 22px;letter-spacing:  1px;"">{{ _('Log ud') }}</a></li>
+        {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% endblock navbar %}
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock app_content %}
+        
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
+    <script>
+        function translate(sourceElem, destElem, sourceLang, destLang) {
+            $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+            $.post('/translate', {
+                text: $(sourceElem).text(),
+                source_language: sourceLang,
+                dest_language: destLang
+            }).done(function(response) {
+                $(destElem).text(response['text'])
+            }).fail(function() {
+                $(destElem).text("{{ _('Error: Could not contact server.') }}");
+            });
+        }
+    </script>
+{% endblock scripts %}

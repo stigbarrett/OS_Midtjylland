@@ -1,0 +1,34 @@
+<!-- BLog Article Section -->
+<div class="col-md-12">
+	<!-- Single Blog Post -->
+	<article class="blog-post-wrapper wow fadeIn" data-wow-delay="0.3s">
+		<!-- Author Info -->
+		<header class="author-info">
+			<h2 class="blog-post-title"><a>Samlet oversigt for - <span style="color: #ff0000">{{art}}:</span></a></h2>
+		</header>
+		<section class="blog-post-content">
+			<div class="blog-post">
+                <table id="Stat_id" data-toggle="table" class="table table-bordered compact nowrap table-striped cell-border"  data-height="500" style="width:100%"> 
+					<thead>
+						{% if statistik2 %}
+							<tr style="table-layout:auto; color: black" >     
+								{% for key in statistik2[0] %}
+									<th > {{ key }} </th>
+								{% endfor %}
+							</tr> 
+						{% endif %}
+					</thead>
+					<tbody>
+						{% for dict_item in statistik2 %}
+							<tr style = "" class="hover">	
+								{% for value in dict_item.values() %}
+									<td><span style= "color:#FF6A00;">{{ value }}</span></td>
+								{% endfor %}
+							</tr>
+						{% endfor %} 
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</article>
+</div>	

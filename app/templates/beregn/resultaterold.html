@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block app_content %}
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+				<aside class="left-sidebar">
+					<div class="widget">
+						<h5 class="widgetheading">Resultater</h5>
+						<form action="" method="POST" class="form-search">
+							{{ form1.hidden_tag() }} {{ form1.form_name }} {{ form1.konkurrence }}<br><br>{{ form1.bane }}<br><br>
+							{{ form1.art }}
+							{{ form1.submit1}}
+						</form>
+					</div>
+					<div class="widget">
+						<h5 class="widgetheading">Point</h5>
+						<form action="" method="POST">
+							{{ form2.hidden_tag() }} {{ form2.form_name }} {{ form2.banepoint }}<br>
+							{{ form2.submit2}}
+						</form>
+					</div>
+				</aside>
+			</div>
+            {% if art == 'resultat' %}
+                {% include 'beregn/_resultat.html' %}
+            {% endif %}
+            {% if art == 'straktider' %}
+                {% include 'beregn/_straktider.html' %}
+			{% endif %}
+			{% if art == 'point' %}
+				{% include 'beregn/_point.html' %}
+			{% endif %}
+		</div>
+    </div>
+</section>
+
+
+	
+{% endblock app_content %}
+
+{% block scripts %}
+	{{ super() }}
+
+	<script type="text/javascript">
+		var $table = $('#Strak_id')
+		$(document).ready(function() {	
+			// Initialise table specifying a dragClass and an onDrop function that will display an alert
+			
+			$table.tableDnD();
+		});
+	</script>
+	
+
+	<script charset="utf-8" type="text/javascript">
+
+		$(function() {
+		
+			// jQuery selection for the 2 select boxes
+			var dropdown = {
+				konkurrence: $('#select_konkurrence'),
+				bane: $('#select_bane')
+			};
+		
+			// call to update on load
+			
+			updateBanerne();
+		
+			// function to call XHR and update county dropdown
+			function updateBanerne() {
+				var send = {
+					konkurrence: dropdown.konkurrence.val()
+				};
+				
+				dropdown.bane.attr('disabled', 'disabled');
+				dropdown.bane.empty();
+				
+				$.getJSON("{{ url_for('._get_banerne') }}", send, function(data) {
+					data.forEach(function(item) {
+						dropdown.bane.append(
+							$('<option>', {
+								value: item[0],
+								text: item[1]
+							})
+						);
+					});
+					
+					dropdown.bane.removeAttr('disabled');
+				});
+			}
+			
+			// event listener to state dropdown change
+			dropdown.konkurrence.on('change', function() {
+				
+				updateBanerne();
+			});
+		
+		});
+		
+	</script>
+	
+
+{% endblock scripts %}
