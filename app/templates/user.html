@@ -31,20 +31,29 @@
                 {% for post in posts %}
                     {% include '_post.html' %}
                 {% endfor %}
-                <nav aria-label="...">
-                    <ul class="pager">
-                        <li class="previous{% if not prev_url %} disabled{% endif %}">
-                            <a href="{{ prev_url or '#' }}">
-                                <span aria-hidden="true">&larr;</span> {{ _('Newer posts') }}
-                            </a>
-                        </li>
-                        <li class="next{% if not next_url %} disabled{% endif %}">
-                            <a href="{{ next_url or '#' }}">
-                                {{ _('Older posts') }} <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="blog-pagination clearfix wow fadeIn" data-wow-delay="0.3s">	
+                    <nav aria-label="..." class="">
+                        <ul class="pagination">
+                            <li class="page-item disabled"></li>
+                                <a class="previous{% if not prev_url %} disabled{% endif %}"></a>
+                                    <!--<i class="fa fa-angle-left"></i>-->
+                                    <!--<li class="previous{% if not prev_url %} disabled{% endif %}">-->
+                                    <a href="{{ prev_url or '#' }}">
+                                        <span aria-hidden="true">&larr;</span> {{ _('Newer posts') }}
+                                    </a>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="next{% if not next_url %} disabled{% endif %}">
+                                    <!--<i class="fa fa-angle-right"></i>-->
+                                    <a href="{{ next_url or '#' }}">
+                                        {{ _('Older posts') }} <span aria-hidden="true">&rarr;</span>
+                                    </a>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
